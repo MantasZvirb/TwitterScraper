@@ -1,5 +1,6 @@
 import urllib2
 import time
+import sys
 
 def ScrapTweets(Txt,OutArray):
 	Index = 0;
@@ -64,11 +65,18 @@ def GetWords(TextArray,OutWordArray):
 		if(Word != ""):
 			OutWordArray.append(Word)
 #Entry
-#"/realdonaldtrump"
 TweetArray = []
 WordArray = []
 
-ScrapAllTweets(TweetArray,"/realdonaldtrump")
+UserNameString = "/";
+
+if(len(sys.argv) == 2):
+	UserNameString+= sys.argv[1]
+else:
+	print "Arg1:Twitter username"
+	sys.exit()
+
+ScrapAllTweets(TweetArray,UserNameString)
 for i in TweetArray:
 	print i
 		
